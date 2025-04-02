@@ -27,7 +27,7 @@ ensure_cleanup() {
 # Set the trap to execute the ensure_cleanup function on EXIT
 trap ensure_cleanup EXIT
 
-# build the ble server binary
+# build the wifi setup service binary
 # and copy it to the imagegen_ext_dir
 # for the raspberry pi image build
 #
@@ -40,7 +40,7 @@ docker compose run --name ${BINARY_BUILD_SVC}-${BUILD_ID} -d ${BINARY_BUILD_SVC}
   && docker cp ${CID}:/app/target/aarch64-unknown-linux-gnu/release/${BINARY_NAME} ./${RPI_CUSTOMIZATIONS_DIR}/ext_dir/image/mbr/simple_dual/device/rootfs-overlay/usr/local/bin/${BINARY_NAME}
 
 # Build a customer raspberry pi image
-# with the ble server included
+# with the wifi setup service included
 #
 echo "🔨 Building Docker image with rpi-image-gen to create ${RPI_BUILD_SVC}..."
 docker compose build ${RPI_BUILD_SVC}
