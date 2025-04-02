@@ -1,0 +1,21 @@
+# Use an official Rust image as the base
+FROM rust:1.84.1-bookworm
+
+# Install dependencies required for cross-compiling
+RUN apt-get update && apt-get install -y \
+    pkg-config \
+    libglib2.0-dev \
+    gcc-arm-linux-gnueabihf \
+    g++-arm-linux-gnueabihf \
+    qemu-user-static \
+    libssl-dev \
+    libudev-dev \
+    git \
+    bluez \
+    libdbus-1-dev
+
+# Set up the cross-compilation environment for ARMv8 (Raspberry Pi)
+RUN rustup target add aarch64-unknown-linux-gnu
+
+# Set the working directory
+WORKDIR /app

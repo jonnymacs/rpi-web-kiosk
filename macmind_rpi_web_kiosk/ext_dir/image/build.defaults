@@ -1,0 +1,20 @@
+# rpi-image-gen image defaults
+
+# Version string of the image to build
+version=$(date +%Y-%m-%d)
+
+# The base suffix of the generated image(s)
+suffix=img
+
+# Identifier for the compression scheme used when deploying images and assets
+compression=none
+
+# Optional file in an image layout directory under sub-directory profile/
+# This is treated as additional profile and it's specified layers will be
+# aggregated into the configuration. A layout may require a profile in
+# order to support certain functionality (eg particular packages needed).
+# A layout may define this in its options file.
+# profile=
+
+# The base name for all generated images
+name="${IGconf_device_class}-${IGconf_device_variant}-${IGconf_image_version}"

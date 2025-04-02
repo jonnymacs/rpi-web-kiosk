@@ -1,0 +1,19 @@
+services:
+    macmind_rpi_web_kiosk:
+        build: .
+        privileged: true
+        stdin_open: true
+        tty: true
+        image: rpi-web-kiosk:latest
+        volumes:
+            - ./macmind_rpi_web_kiosk:/home/imagegen/macmind_rpi_web_kiosk
+    wifi_setup_service:
+        build:
+            context: ./wifi_setup_service
+            dockerfile: Dockerfile.wifi_setup_service
+        privileged: true
+        stdin_open: true
+        tty: true
+        image: wifi_setup_service:latest
+        volumes:
+            - ./wifi_setup_service:/app

@@ -1,0 +1,12 @@
+#!/bin/bash
+
+set -eu
+
+pkgs=(dosfstools)
+
+case $IGconf_image_rootfs_type in
+   ext4)  pkgs+=(e2fsprogs) ;;
+   btrfs) pkgs+=(btrfs-progs) ;;
+esac
+
+chroot $1 apt install -y "${pkgs[@]}"
