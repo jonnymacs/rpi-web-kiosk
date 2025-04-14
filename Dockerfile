@@ -24,51 +24,34 @@ RUN /bin/bash -c '\
     arm64) echo "Building for arm64" && \
       apt-get update && \
       rpi-image-gen/install_deps.sh ;; \
-    amd64) echo "Try to Build for amd64. As of Apr 2025 rpi-image-gen install_deps exits if arm arch is not detected" && \
+    amd64) echo "Try to Build for amd64. \
+      As of Apr 2025 rpi-image-gen install_deps exits if arm arch is not detected. \
+      Override binfmt_misc_required flag and install known amd64 deps that are not \
+      provided in the depends file" && \
 
-      if [ ! -f rpi-image-gen/depends ]; then \
-          echo "Error: /depends file not found"; \
-          exit 1; \
-      fi; \
+      sed -i "s|\"\${binfmt_misc_required}\" == \"1\"|! -z \"\"|g" rpi-image-gen/scripts/dependencies_check && \
 
-      packages=(qemu-user-static \
-      binfmt-support \
-      dirmngr \
-      slirp4netns \
-      quilt \
-      parted \
-      debootstrap \
-      zerofree \
-      libcap2-bin \
-      libarchive-tools \
-      xxd \
-      file \
-      kmod \
-      bc \
-      pigz \
-      arch-test); \
+      apt-get update && \
+      apt-get install --no-install-recommends -y \
+        qemu-user-static \
+        binfmt-support \
+        dirmngr \
+        slirp4netns \
+        quilt \
+        parted \
+        debootstrap \
+        zerofree \
+        libcap2-bin \
+        libarchive-tools \
+        xxd \
+        file \
+        kmod \
+        bc \
+        pigz \
+        arch-test && \
 
-      while IFS= read -r line; do \
-          if [[ -z "$line" || "$line" =~ ^# ]]; then \
-              continue; \
-          fi; \
-          if [[ "$line" =~ ":" ]]; then \
-              package=$(echo "$line" | cut -d":" -f2); \
-          else \
-              package="$line"; \
-          fi; \
-          package=$(echo "$package" | xargs); \
-          packages+=("$package"); \
-      done < rpi-image-gen/depends; \
-
-      if [ ${#packages[@]} -gt 0 ]; then \
-          echo "Installing packages: ${packages[@]}"; \
-          apt-get update && apt-get install --no-install-recommends -y "${packages[@]}"; \
-      else \
-          echo "No packages to install"; \
-      fi ;; \
-    *) \
-          echo "Architecture $ARCH is not amd64. Skipping package installation." ;; \
+        rpi-image-gen/install_deps.sh ;; \
+    *) echo "Architecture $ARCH is not arm64 or amd64. Skipping package installation." ;; \
   esac'
 
 ENV USER imagegen
@@ -77,4 +60,3 @@ USER ${USER}
 WORKDIR /home/${USER}
 
 RUN /bin/bash -c 'cp -r /rpi-image-gen ~/'
-

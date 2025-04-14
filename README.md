@@ -2,17 +2,14 @@
 
 Complete tutorial on how to build a custom image that turns a Raspberry Pi into a Kiosk serving a web application running in a caged chromium browser instance!
 
+This has been tested on both ARM64 Mac and AMD64 Mac laptops.
+
+AMD is much slower as expected due to emulation.
+
 ```sh
 git clone https://github.com/jonnymacs/rpi-web-kiosk
 cd rpi-web-kiosk
 ./build.sh
-```
-
-## if you are on intel chip you need to execute the commands in the build script 1 at a time and make this change in the rpi image gen container
-```bash
-$sudo su
-$mount binfmt_misc -t binfmt_misc /proc/sys/fs/binfmt_misc && echo 1 > /proc/sys/fs/binfmt_misc/status
-$exit
 ```
 
 Use the Raspberry Pi Imager tool to install the img file located in macmind_rpi_web_kiosk/deploy
