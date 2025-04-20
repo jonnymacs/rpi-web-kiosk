@@ -1,0 +1,14 @@
+{
+  "PMAPversion": "1.0.0",
+  "system_type": "flat",
+  "partitions": [
+    {
+      "name": "boot",
+      "id": 1
+    },
+    {
+      "name": "root",
+      "id": 2
+    }
+  ]
+}

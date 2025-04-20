@@ -5,6 +5,9 @@ set -eu
 rootfs=$1
 genimg_in=$2
 
+# Install provision map - TODO select clear/crypt?
+cp ./device/provisionmap.json ${IGconf_sys_outputdir}/provisionmap.json
+
 echo "BOOT_UUID=\"$(uuidgen | sed 's/-.*//')"\" > ${genimg_in}/fs_uuids
 echo "ROOT_UUID=\"$(uuidgen)"\" >> ${genimg_in}/fs_uuids
 . ${genimg_in}/fs_uuids

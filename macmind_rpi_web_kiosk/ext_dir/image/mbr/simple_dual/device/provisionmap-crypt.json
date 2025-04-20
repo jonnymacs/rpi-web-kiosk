@@ -1,0 +1,24 @@
+{
+  "PMAPversion": "1.0.0",
+  "system_type": "flat",
+  "partitions": [
+    {
+      "name": "boot",
+      "id": 1
+    }
+  ],
+  "encrypted": {
+     "luks": {
+        "version": 2,
+        "key_size": 512,
+        "cipher": "aes-xts-plain64",
+        "hash": "sha256"
+     },
+     "partitions": [
+        {
+           "name": "root",
+           "id": "cryptroot"
+        }
+     ]
+  }
+}
