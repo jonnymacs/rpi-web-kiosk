@@ -31,10 +31,16 @@ RUN /bin/bash -c '\
 
       sed -i "s|\"\${binfmt_misc_required}\" == \"1\"|! -z \"\"|g" rpi-image-gen/scripts/dependencies_check && \
 
+      if cat /proc/filesystems | grep -q binfmt_misc; then \
+        echo \"binfmt_misc is supported\" ; \
+      else \
+        echo \"binfmt_misc is not supported. Install binfmt-support on your host machine\" ; \
+        exit 1 ; \
+      fi && \
+
       apt-get update && \
       apt-get install --no-install-recommends -y \
         qemu-user-static \
-        binfmt-support \
         dirmngr \
         slirp4netns \
         quilt \
@@ -49,8 +55,7 @@ RUN /bin/bash -c '\
         bc \
         pigz \
         arch-test && \
-
-        rpi-image-gen/install_deps.sh ;; \
+      rpi-image-gen/install_deps.sh ;; \
     *) echo "Architecture $ARCH is not arm64 or amd64. Skipping package installation." ;; \
   esac'
 
