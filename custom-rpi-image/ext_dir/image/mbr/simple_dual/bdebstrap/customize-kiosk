@@ -8,7 +8,9 @@ rsync ../kiosk-conf/unblock-wifi.service $1/etc/systemd/system/unblock-wifi.serv
 mkdir -p $1/etc/wpa_supplicant
 
 # Write out our systemd service to start our wifi setup service
-rsync ../kiosk-conf/wifi-setup.service $1/etc/systemd/system/wifi-setup.service
+cat ../kiosk-conf/wifi-setup.service.tpl | sed \
+   -e "s|<KIOSK_HOMEPAGE_URL>|$IGconf_kiosk_homepage_url|g" \
+   > $1/etc/systemd/system/wifi-setup.service
 
 # # Enable the wifi-setup service so it starts automatically
 $BDEBSTRAP_HOOKS/enable-units "$1" wifi-setup

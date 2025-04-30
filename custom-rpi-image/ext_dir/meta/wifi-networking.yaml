@@ -1,0 +1,11 @@
+---
+name: wifi-networking
+mmdebstrap:
+  packages:
+    - firmware-brcm80211
+    - rfkill
+    - wpasupplicant
+    - isc-dhcp-client
+  install-recommends: false
+  customize-hooks:
+    - $META_HOOKS/systemd/netgen wlan0 > $1/etc/systemd/network/25-wireless.network

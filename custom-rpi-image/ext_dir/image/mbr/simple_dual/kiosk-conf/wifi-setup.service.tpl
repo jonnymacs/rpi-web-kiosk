@@ -5,6 +5,7 @@ Requires=wifi.service
 
 [Service]
 ExecStart=/usr/local/bin/wifi_setup_service
+Environment="KIOSK_HOMEPAGE_URL=<KIOSK_HOMEPAGE_URL>"
 Restart=always
 RestartSec=5
 User=root

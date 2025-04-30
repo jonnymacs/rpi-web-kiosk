@@ -2,3 +2,4 @@ DEVICE_HOSTNAME=MACMIND_RPI_WEB_KIOSK
 device_user1=macmind
 device_user1pass=macmind
 IMAGE_NAME=macmind_rpi_web_kiosk
+kiosk_homepage_url=https://self-order-kiosk-front.vercel.app/
