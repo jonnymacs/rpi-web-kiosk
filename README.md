@@ -17,14 +17,14 @@ cd rpi-web-kiosk
 
 Default is Pi5. The img has been tested on Pi4 and Pi5.
 
-If you are on a Pi4, set the macmind_rpi_web_kiosk/ext_dir/config/macmind_rpi_web_kiosk device class to pi4
+If you are on a Pi4, set the custom-rpi-image/ext_dir/config/custom-rpi-image device class to pi4
 
 ```
 [device]
 class=pi4
 ```
 
-Use the Raspberry Pi Imager tool to install the img file located in macmind_rpi_web_kiosk/deploy
+Use the Raspberry Pi Imager tool to install the img file located in custom-rpi-image/deploy
 on an SD card or USB stick
 
 [![Watch and Like the recorded video for this project on YouTube](https://img.youtube.com/vi/RnehTqAVqQQ/maxresdefault.jpg)](https://www.youtube.com/watch?v=RnehTqAVqQQ)
