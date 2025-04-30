@@ -1,12 +1,12 @@
 services:
-    macmind_rpi_web_kiosk:
+    custom-rpi-image:
         build: .
         privileged: true
         stdin_open: true
         tty: true
         image: rpi-web-kiosk:latest
         volumes:
-            - ./macmind_rpi_web_kiosk:/home/imagegen/macmind_rpi_web_kiosk
+            - ./custom-rpi-image:/home/imagegen/custom-rpi-image
     wifi_setup_service:
         build:
             context: ./wifi_setup_service
