@@ -8,6 +8,8 @@ mmdebstrap:
     - isc-dhcp-client
     - cage
     - chromium
+    - plymouth
+    - plymouth-themes
   install-recommends: false
   customize-hooks:
     - chroot $1 sh -c "useradd -m -s /bin/bash -u 4000 $IGconf_device_user1"

@@ -1,0 +1,14 @@
+#!/bin/bash
+
+set -eu
+
+# configure the splashscreen
+mkdir -p $1/usr/share/plymouth/themes/macmind
+chmod 755 $1/usr/share/plymouth/themes/macmind
+
+rsync -a ${IGIMAGE}/plymouth/themes/macmind $1/usr/share/plymouth/themes/
+
+chmod 644 $1/usr/share/plymouth/themes/macmind/*
+
+# set the default theme to macmind
+chroot $1 plymouth-set-default-theme macmind

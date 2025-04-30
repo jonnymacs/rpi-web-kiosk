@@ -1,0 +1,6 @@
+image = Image("MacMind-Logo.png");
+sprite = Sprite();
+
+sprite.SetImage(image);
+sprite.SetX(Window.GetX() + (Window.GetWidth() / 2 - image.GetWidth() / 2));
+sprite.SetY(Window.GetY() + (Window.GetHeight() / 2 - image.GetHeight() / 2));
