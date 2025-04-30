@@ -6,15 +6,22 @@ This has been tested on both ARM64 Mac and AMD64 Mac laptops.
 
 AMD is much slower as expected due to emulation.
 
+## Clone the repo
+
+```sh
+git clone https://github.com/jonnymacs/rpi-web-kiosk
+cd rpi-web-kiosk
+```
+
 ### kiosk_homepage_url
 
-Set the kiosk_homepage_url in custom-rpi-image/ext_dir/custom-rpi-image.options
+Set the kiosk_homepage_url in `custom-rpi-image/ext_dir/custom-rpi-image.options`
 
 ### device type
 
 Default is Pi5. The img has been tested on Pi4 and Pi5.
 
-If you are on a Pi4, set the custom-rpi-image/ext_dir/config/custom-rpi-image device class to pi4
+If you are on a Pi4, set the device class to pi4 in `custom-rpi-image/ext_dir/config/custom-rpi-image.cfg` 
 
 ```
 [device]
@@ -24,8 +31,6 @@ class=pi4
 ## Build the img
 
 ```sh
-git clone https://github.com/jonnymacs/rpi-web-kiosk
-cd rpi-web-kiosk
 ./build.sh
 ```
 
