@@ -13,6 +13,10 @@ cd rpi-web-kiosk
 ./build.sh
 ```
 
+### kiosk_homepage_url
+
+Set the kiosk_homepage_url in custom-rpi-image/ext_dir/custom-rpi-image.options
+
 ### note
 
 Default is Pi5. The img has been tested on Pi4 and Pi5.
