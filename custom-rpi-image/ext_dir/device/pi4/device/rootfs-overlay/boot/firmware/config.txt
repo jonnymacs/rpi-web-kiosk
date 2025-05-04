@@ -33,6 +33,9 @@ disable_overscan=1
 # Run as fast as firmware / board allows
 arm_boost=1
 
+disable_splash=1
+boot_delay=0
+
 [cm5]
 dtoverlay=dwc2,dr_mode=host
 

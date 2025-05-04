@@ -37,6 +37,9 @@ arm_boost=1
 # 
 usb_max_current_enable=1
 
+disable_splash=1
+boot_delay=0
+
 [cm5]
 dtoverlay=dwc2,dr_mode=host
 
