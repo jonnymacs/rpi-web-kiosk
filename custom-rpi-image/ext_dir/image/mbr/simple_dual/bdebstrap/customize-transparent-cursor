@@ -1,0 +1,9 @@
+#!/bin/sh
+
+set -eu
+
+for dir in $1/usr/share/icons/*; do
+  if [ -d "$dir" ]; then
+    rsync -a ../transparent-cursor/ $dir/
+  fi
+done

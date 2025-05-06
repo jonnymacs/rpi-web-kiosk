@@ -16,8 +16,11 @@ cat ../kiosk-conf/wifi-setup.service.tpl | sed \
 $BDEBSTRAP_HOOKS/enable-units "$1" wifi-setup
 
 # We'll run chromium like this
-APP="/usr/bin/chromium-browser http://localhost:8080 --kiosk --noerrdialogs --disable-infobars --disable-cursor --no-first-run --ozone-platform=wayland --enable-features=OverlayScrollbar --start-maximized"
-
+APP="/usr/bin/chromium-browser http://localhost:8080 \
+   --kiosk --noerrdialogs --disable-infobars --disable-cursor \
+   --no-first-run --ozone-platform=wayland \
+   --enable-features=OverlayScrollbar --start-maximized"
+# 
 # Write out our systemd kiosk service
 cat ../kiosk-conf/kiosk.service.tpl | sed \
    -e "s|<KIOSK_USER>|$IGconf_device_user1|g" \
