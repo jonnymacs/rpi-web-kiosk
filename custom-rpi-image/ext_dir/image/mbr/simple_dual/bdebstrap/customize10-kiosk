@@ -1,0 +1,29 @@
+#!/bin/bash
+set -e
+
+ROOTFS="$1"
+
+# Install PM2 globally (not available via APT)
+chroot "$ROOTFS" npm install -g pm2
+echo "✅ PM2 Installed"
+
+ROOTFS=$1
+
+chroot $1 npm install -g serve
+echo "✅ Installed serve"
+
+chroot $1 systemctl enable ssh
+$BDEBSTRAP_HOOKS/enable-units "$1" ssh
+
+chroot $1 systemctl enable wpa_supplicant@wlan0
+
+# disable screen blanking on the console
+sed -i 's/ console=tty1/ console=tty1 consoleblank=0/' "$ROOTFS/boot/firmware/cmdline.txt"
+
+# set transparent cursor in kiosk mode
+for dir in $1/usr/share/icons/*; do 
+    if [ -d "$dir" ]; then
+        rsync -a ../transparent-cursor/ $dir/
+    fi
+done
+
