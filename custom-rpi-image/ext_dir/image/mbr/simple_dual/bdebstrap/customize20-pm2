@@ -1,0 +1,23 @@
+#!/bin/bash
+set -eu
+
+ROOTFS="$1"
+
+if chroot "$ROOTFS" id -u $IGconf_device_user1 > /dev/null 2>&1; then
+  # Install app dependencies locally
+  chroot "$ROOTFS" /bin/bash -c "cd /home/$IGconf_device_user1 && npm install"
+  echo "✅ Installed app dependencies"
+
+  echo "✅ User '$IGconf_device_user1' exists — setting up PM2..."
+  chroot "$ROOTFS" mkdir -p /home/$IGconf_device_user1/.pm2
+  chroot "$ROOTFS" chown -R $IGconf_device_user1:$IGconf_device_user1 /home/$IGconf_device_user1/.pm2
+
+  chroot "$ROOTFS" su - $IGconf_device_user1 -c "pm2 start /home/$IGconf_device_user1/ecosystem.config.js"
+  chroot "$ROOTFS" su - $IGconf_device_user1 -c "pm2 save"
+  # Setup PM2 systemd service from root context
+  chroot "$ROOTFS" pm2 startup systemd -u $IGconf_device_user1 --hp /home/$IGconf_device_user1 --silent || true
+  chroot "$ROOTFS" systemctl enable pm2-$IGconf_device_user1
+else
+  echo "❌ PM2 setup failed: user '$IGconf_device_user1' still not found"
+  exit 1
+fi
