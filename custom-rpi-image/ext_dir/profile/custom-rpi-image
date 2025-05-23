@@ -12,3 +12,4 @@ rpi/misc-skel
 sys-apps/systemd-net-min
 app-misc/ca-certificates
 wifi-networking
+nodejs

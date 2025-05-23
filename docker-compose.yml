@@ -7,6 +7,10 @@ services:
         image: rpi-web-kiosk:latest
         volumes:
             - ./custom-rpi-image:/home/imagegen/custom-rpi-image
+            - ./app:/home/imagegen/app
+            # don't mount nodes_modules and build folders
+            - /home/imagegen/app/node_modules
+            - /home/imagegen/app/build
     wifi_setup_service:
         build:
             context: ./wifi_setup_service

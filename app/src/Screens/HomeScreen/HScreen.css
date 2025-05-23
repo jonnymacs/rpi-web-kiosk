@@ -1,0 +1,37 @@
+.bgStyle {
+  mix-blend-mode: normal;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+
+.centerStyle {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex-direction: column;
+}
+
+
+.centerStyle h3 {
+  font-family: "Poppins", sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  color: #fff;
+  margin: 20px 0  0 35px;
+}
+
+.bgImage1 img {
+  position: absolute;
+  top: -10%;
+  left: -10%;
+  width: 600px;
+}
+
+.bgImage2 img {
+  position: absolute;
+  bottom: -100px;
+  right: -100px;
+  width: 600px;
+}

@@ -1,0 +1,29 @@
+#!/bin/sh
+
+set -eu
+
+# this is where you would git clone your react app if installing from a git repo
+# in this case we are using the local directory so we rsync the local directory to the image
+app_dir_name=app
+rsync -a ~/$app_dir_name $1/home/$IGconf_device_user1/
+
+# # install app dependencies
+# #
+chroot $1 chown -R $IGconf_device_user1:$IGconf_device_user1 /home/$IGconf_device_user1/$app_dir_name
+chroot $1 runuser -u $IGconf_device_user1 -- bash -c "npm install --prefix /home/$IGconf_device_user1/$app_dir_name"
+echo "✅ Installed app dependencies"
+chroot $1 runuser -u $IGconf_device_user1 -- bash -c "npm run tsc --prefix /home/$IGconf_device_user1/$app_dir_name"
+chroot $1 runuser -u $IGconf_device_user1 -- bash -c "npm run build --prefix /home/$IGconf_device_user1/$app_dir_name"
+echo "✅ Build completed"
+chroot $1 runuser -u $IGconf_device_user1 -- bash -c "npm install -g serve --prefix /home/$IGconf_device_user1/$app_dir_name"
+echo "✅ Installed serve"
+chroot $1 runuser -u $IGconf_device_user1 -- bash -c "rm -rf /home/$IGconf_device_user1/$app_dir_name/node_modules"
+echo "✅ Removed node_modules directory"
+
+# Write out our systemd kiosk service
+cat ../react-app-setup/react-app.service.tpl | sed \
+   -e "s|<KIOSK_USER>|$IGconf_device_user1|g" \
+   > $1/etc/systemd/system/react-app.service
+
+# trigger the systemd service to run on first boot
+$BDEBSTRAP_HOOKS/enable-units "$1" react-app

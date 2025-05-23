@@ -10,10 +10,7 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
       gpg-agent \
   && rm -rf /var/lib/apt/lists/*
 
-RUN curl -fsSL https://archive.raspberrypi.com/debian/raspberrypi.gpg.key \
-  | gpg --dearmor > /usr/share/keyrings/raspberrypi-archive-keyring.gpg
-
-ARG RPIIG_GIT_SHA ba410bccd3f690a49cb8ec7a724cb59d08a4257e
+ARG RPIIG_GIT_SHA 6237c061b077621d58087d7e80dee38eab4fadf9
 RUN git clone --no-checkout https://github.com/raspberrypi/rpi-image-gen.git && cd rpi-image-gen && git checkout ${RPIIG_GIT_SHA}
 
 ARG TARGETARCH
