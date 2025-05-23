@@ -15,7 +15,7 @@ cd rpi-web-kiosk
 
 ### kiosk_homepage_url
 
-Set the kiosk_homepage_url in `custom-rpi-image/ext_dir/custom-rpi-image.options`
+The app is configured to run on localhost:3000 but you can set another url, or remove the react app from this repo and set the kiosk_homepage_url in `custom-rpi-image/ext_dir/custom-rpi-image.options`
 
 ### device type
 
