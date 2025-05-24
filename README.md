@@ -39,9 +39,18 @@ class=pi4
 Use the Raspberry Pi Imager tool to install the img file located in custom-rpi-image/deploy
 on an SD card or USB stick
 
-**[Watch and Like the recorded video for this project on YouTube](https://www.youtube.com/watch?v=RnehTqAVqQQ)** 
 
-[![Watch and Like the recorded video for this project on YouTube](https://img.youtube.com/vi/RnehTqAVqQQ/maxresdefault.jpg)](https://www.youtube.com/watch?v=RnehTqAVqQQ)
+**[Watch and Like Part 3 for this project on YouTube](https://www.youtube.com/watch?v=nO2GzEgWpLU)** 
+
+[![Watch and Like Part 3 for this project on YouTube](https://img.youtube.com/vi/nO2GzEgWpLU/maxresdefault.jpg)](https://www.youtube.com/watch?v=nO2GzEgWpLU)
+
+**[Watch and Like Part 2 for this project on YouTube](https://www.youtube.com/watch?v=1P5lRYgoLC8)** 
+
+[![Watch and Like Part 2 for this project on YouTube](https://img.youtube.com/vi/1P5lRYgoLC8/maxresdefault.jpg)](https://www.youtube.com/watch?v=1P5lRYgoLC8)
+
+**[Watch and Like Part 1 for this project on YouTube](https://www.youtube.com/watch?v=RnehTqAVqQQ)** 
+
+[![Watch and Like Part 1 for this project on YouTube](https://img.youtube.com/vi/RnehTqAVqQQ/maxresdefault.jpg)](https://www.youtube.com/watch?v=RnehTqAVqQQ)
 
 **[Subscribe to the channel for more similar content](https://www.youtube.com/@macmind-io?sub_confirmation=1)
 
