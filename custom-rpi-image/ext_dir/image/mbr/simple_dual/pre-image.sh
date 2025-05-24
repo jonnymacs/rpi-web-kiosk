@@ -24,3 +24,7 @@ cat genimage.cfg.in.$IGconf_image_rootfs_type | sed \
    -e "s|<BOOT_UUID>|$BOOT_UUID|g" \
    -e "s|<ROOT_UUID>|$ROOT_UUID|g" \
    > ${genimg_in}/genimage.cfg
+
+echo "⚠️  Cleaning /dev before genimage to avoid device copy errors..."
+rm -rf "$IGconf_sys_target/dev"/*
+mkdir -p "$IGconf_sys_target/dev"

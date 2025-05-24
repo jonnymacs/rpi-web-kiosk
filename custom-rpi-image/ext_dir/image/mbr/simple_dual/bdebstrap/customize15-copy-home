@@ -1,0 +1,17 @@
+#!/bin/bash
+set -eu
+
+ROOTFS="$1"
+
+# Create home directory if it doesn't exist
+mkdir -p "$ROOTFS/home/$IGconf_device_user1"
+
+# Rsync the home files (e.g., app, configs, scripts)
+rsync -a "${IGIMAGE}/home/$IGconf_device_user1/" "$ROOTFS/home/$IGconf_device_user1/"
+
+chroot $1 chown -R $IGconf_device_user1:$IGconf_device_user1 /home/$IGconf_device_user1
+
+# Fix permissions: readable by user, executables for scripts/binaries
+chmod -R u+rwX "$ROOTFS/home/$IGconf_device_user1"
+chmod +x "$ROOTFS/home/$IGconf_device_user1/wb_server" || true
+chroot $1 sh -c "for grp in video input tty dialout; do usermod -aG \$grp $IGconf_device_user1; done"

@@ -3,9 +3,9 @@
 # Some settings may impact device functionality. See link above for details
 
 # Uncomment some or all of these to enable the optional hardware interfaces
-#dtparam=i2c_arm=on
-#dtparam=i2s=on
-#dtparam=spi=on
+# dtparam=i2c_arm=on
+# dtparam=i2s=on
+# dtparam=spi=on
 
 # Additional overlays and parameters are documented
 # /boot/firmware/overlays/README
@@ -36,9 +36,11 @@ arm_boost=1
 disable_splash=1
 boot_delay=0
 
-[cm5]
-dtoverlay=dwc2,dr_mode=host
 
 [all]
 BOOT_UART=1
 uart_2ndstage=1
+hdmi_group=2
+hdmi_mode=82
+hdmi_cvt 1920 1080 60 6 0 0 0
+dtoverlay=dwc2,dr_mode=host
