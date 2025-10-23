@@ -2,10 +2,39 @@
 name: customizations
 mmdebstrap:
   packages:
+    - linux-image-rpi-v8
+    - raspi-firmware
+    - raspi-config
+    - systemd
+    - libpam-systemd
+    - netcat-openbsd
+    - xserver-xorg
+    - xinit
+    - x11-xserver-utils
+    - openbox
     - plymouth
     - plymouth-themes
     - cage
     - chromium
+    - nodejs
+    - npm
+    - xserver-xorg-input-libinput
+    - libusb-1.0-0-dev
+    - zlib1g-dev
+    - libstdc++6
+    - openssh-server
+    - wpasupplicant
+    - firmware-brcm80211
+    - wireless-tools
+    - sudo
+    - net-tools
+    - iputils-ping
+    - nano
+    - curl
+    - libinput-bin 
+    - usbutils
+    - evtest                # test touchscreen events
+    - libudev1
   install-recommends: false
   customize-hooks:
     - chroot $1 sh -c "useradd -m -s /bin/bash -u 4000 $IGconf_device_user1"

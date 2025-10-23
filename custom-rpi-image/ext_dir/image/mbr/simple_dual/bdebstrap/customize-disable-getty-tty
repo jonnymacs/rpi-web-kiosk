@@ -1,5 +1,0 @@
-#!/bin/sh
-
-set -eu
-
-ln -sf "/dev/null" "$1/etc/systemd/system/getty@tty1.service"

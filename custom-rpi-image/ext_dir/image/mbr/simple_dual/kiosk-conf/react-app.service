@@ -1,0 +1,15 @@
+[Unit]
+Description=Node.js App with npm install (I didn't make it to work)
+After=network.target  
+
+[Service]
+ExecStart=/usr/bin/node /home/<KIOSK_USER>/server.js  
+WorkingDirectory=/home/<KIOSK_USER>                  
+Restart=always                                        
+User=<KIOSK_USER>                                    
+Environment=NODE_ENV=production                       
+StandardOutput=journal                                
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target 
